@@ -53,7 +53,8 @@ export function LoginFormComponent() {
   // logic with form 
   function onSubmit(data: z.infer<typeof formSchema>) {
       const postdata = async () =>{
-        const res = await fetch('https://sombobaeb.cheat.casa/auth/login',{
+        const authUrl = process.env.NEXT_PUBLIC_AUTH_API || 'https://sombobaeb.cheat.casa';
+        const res = await fetch(`${authUrl}/auth/login`,{
           method:'POST',
           headers: {
             'Content-Type': "application/json"

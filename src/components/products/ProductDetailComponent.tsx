@@ -105,10 +105,10 @@ const ProductDetailComponent = ({ className, id }: ProductDetail1Props) => {
   useEffect(()=> {
      
     async function fetchSingleProductByID(){
-       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+       const apiUrl = process.env.NEXT_PUBLIC_FAKESTORE_API || 'https://fakestoreapi.com';
+       const response = await fetch(`${apiUrl}/products/${id}`);
        const singleProduct = await response.json();
        setSingleProduct(singleProduct);
-
     }
     fetchSingleProductByID();
 

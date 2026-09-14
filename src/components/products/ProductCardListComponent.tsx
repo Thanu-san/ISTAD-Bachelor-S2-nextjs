@@ -10,7 +10,8 @@ export default function ProductCardListComponent() {
   // useEffect 
   useEffect(()=> {
     async function fetchProducts(){
-        const response = await fetch('https://fakestoreapi.com/products');
+        const apiUrl = process.env.NEXT_PUBLIC_FAKESTORE_API || 'https://fakestoreapi.com';
+        const response = await fetch(`${apiUrl}/products`);
         const products = await response.json();
         setProducts(products);
     }

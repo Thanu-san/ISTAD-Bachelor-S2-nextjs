@@ -1,23 +1,27 @@
-'use client'
-import { columns, ProductType} from "./columns"
-import { DataTable } from "./data-table"
-import useSWR from 'swr'
+import { Metadata } from "next";
+import { ProductTableContent } from "./product-table-content";
 
-const fetcher = (url:string) => fetch(url).
-then((r) => r.json())
-.then((data:ProductType[]) => data)
+export const metadata: Metadata = {
+  title: {
+    template: "%s | M2-Thanu",
+    default: "M2-Thanu",
+  },
+  keywords:
+    "Always smart , but never smartest, Always an option , but never the one",
+  description:
+    "ISTAD has change my life, what a school , My first year I already know what is Nextjs",
+  openGraph: {
+    title: "This is my Next-js class",
+    description:
+      "ISTAD has change my life, what a school , My first year I already know what is Nextjs",
+    images: ["/Thumbnail.jpg"],
+  },
+};
 
 export default function ProductDataTable() {
-  const {data, error, isLoading} = useSWR('https://fakestoreapi.com/products',fetcher);
-
-  if (error) return <div>Failed to Load</div>
-  if (isLoading) return <div>Loading...</div>
-
   return (
     <div className="container mx-auto py-10">
-      <DataTable 
-      columns={columns} 
-       data={data  as ProductType[]} />
+      <ProductTableContent />
     </div>
-  )
+  );
 }

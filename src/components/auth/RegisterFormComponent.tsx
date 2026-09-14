@@ -68,7 +68,8 @@ export function RegisterFormComponent() {
     try {
       const { confirmPassword, ...payload } = data
 
-      const res = await fetch("https://sombobaeb.cheat.casa/auth/register", {
+      const authUrl = process.env.NEXT_PUBLIC_AUTH_API || "https://sombobaeb.cheat.casa";
+      const res = await fetch(`${authUrl}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
